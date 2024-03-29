@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items and Prices</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            font-weight: bold;
+        }
+        .checkout-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .checkout-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Items and Prices</h1>
+    <form action="" method="post">{% csrf_token %}
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>Item 1</td>
+                <td>$10.00</td>
+            </tr>
+            <tr>
+                <td>Item 2</td>
+                <td>$20.00</td>
+            </tr>
+            <tr>
+                <td>Item 3</td>
+                <td>$15.00</td>
+            </tr>
+        </table>
+        <div class="total">
+            Total Price: $45.00
+        </div>
+        <button type="submit" class="checkout-btn">Checkout</button>
+    </form>
+</body>
+</html>

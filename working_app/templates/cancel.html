@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8d7da; /* Light red background color */
+        }
+        .failure-message {
+            text-align: center;
+            font-size: 24px;
+            color: #721c24; /* Dark red text color */
+            padding: 20px;
+            border: 2px solid #f5c6cb; /* Red border */
+            border-radius: 8px;
+            background-color: #fff; /* White background color */
+        }
+        .failure-icon {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="failure-message">
+        <img src="payment_failure_icon.png" alt="Payment Failed" class="failure-icon">
+        <p>Payment Failed</p>
+        <p>Please try again or contact customer support.</p>
+    </div>
+</body>
+</html>
