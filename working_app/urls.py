@@ -7,4 +7,4 @@ urlpatterns = [
     path('success/', SuccessView.as_view(), name = "success_api"),
     path('cancel/', CancelView.as_view(), name = "cancel_api"),
     path('my-webhook/', MyWebHookView.as_view(), name = "webhook_api"),
-]
+] 
