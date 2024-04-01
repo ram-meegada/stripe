@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 import stripe
 from main_project import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+import json
 
 stripe.api_key = settings.STRIPE_ACCOUNT_KEY
 
@@ -32,6 +33,47 @@ class CancelView(TemplateView):
     template_name = "cancel.html"
     def get(self, request):
         return render(request, self.template_name)
+    
+class FrontEndIntentView(TemplateView):    
+    # template_name = "create_pay_int.html"
+    template_name = "test.html"
+    def get(self, request):
+        return render(request, self.template_name)
+    
+from django.views import View    
+class CreatePaymentIntentView(TemplateView):
+    def post(self, request, *args, **kwargs):
+        print(1111111111111111111111111111111, 'cdsjbusdfsjdfd')
+        try:
+            # data = json.loads(request.data)
+            print(request.POST, '-------')
+            # create_customer = stripe.Customer.create(email = request.POST["email"])
+            intent = stripe.PaymentIntent.create(
+                amount=100,
+                currency='usd',
+                # customer = create_customer['id'],
+                automatic_payment_methods={
+                    'enabled': True,
+                },
+                description = "This is for testing payment intent",
+                shipping={
+                            "name": "Jenny Rosen",
+                            "address": {
+                                "line1": "510 Townsend St",
+                                "postal_code": "98140",
+                                "city": "San Francisco",
+                                "state": "CA",
+                                "country": "US",
+                            },
+                        },
+            )
+            print(intent, '============')
+            return JsonResponse({
+                'clientSecret': intent['client_secret']
+            })
+        except Exception as e:
+            print(e, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+            return JsonResponse(error=str(e)) 
 
 @method_decorator(csrf_exempt, name = 'dispatch')
 class MyWebHookView(TemplateView):
@@ -59,3 +101,6 @@ def payment_checkout_link():
             cancel_url= 'http://127.0.0.1:8000/cancel/',
         )
     return session    
+
+# elements = stripe.elements({ appearance, clientSecret });
+#         console.log(elements, '-------11111111111')

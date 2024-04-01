@@ -26,8 +26,12 @@ SECRET_KEY = 'django-insecure-u-xpxno_wss2r6$c)&4ov%eqkmjq#zi@63uqustr_m$(_&a&an
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOWED_ORIGINS = [
+    "https://bfac-2401-4900-1c6e-55d3-6407-3bf8-3d70-e34e.ngrok-free.app",
+]
+CSRF_TRUSTED_ORIGINS = ['https://bfac-2401-4900-1c6e-55d3-6407-3bf8-3d70-e34e.ngrok-free.app']
 
-
+CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,14 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 
-    'working_app'
+    'working_app',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
