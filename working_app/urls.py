@@ -7,4 +7,9 @@ urlpatterns = [
     path('success/', SuccessView.as_view(), name = "success_api"),
     path('cancel/', CancelView.as_view(), name = "cancel_api"),
     path('my-webhook/', MyWebHookView.as_view(), name = "webhook_api"),
+
+
+    path('test/', Test.as_view(), name = "test"),
+
+    path('ppt-to-pdf/', PptToPdfView.as_view()),
 ]

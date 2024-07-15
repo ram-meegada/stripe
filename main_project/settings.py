@@ -75,12 +75,26 @@ WSGI_APPLICATION = 'main_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# AUTH_USER_MODEL = "working_app.User"
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "TestingDatabase",
+        'USER': "postgres",
+        'PASSWORD': "apptunix",
+        'HOST': "localhost",
+        'PORT': "5432"
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -126,3 +140,67 @@ webhook = "https://67df-112-196-43-19.ngrok-free.app"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_ACCOUNT_KEY = "sk_test_51OzXUvSGH8hrefYBfoRbQ1QJpAF5FRj5kC69oQlJ9uuZsQWgncCsqgdnC8BGMArLbvE6TpYu0XeMwgB6n6jrfJkj00P84uxR0H"
+
+# settings.py
+
+import os
+
+# settings.py
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{levelname} {asctime} {module} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',  # Change this to DEBUG
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'debug.log'),
+#             'formatter': 'verbose',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',  # Change this to DEBUG
+#             'propagate': True,
+#         },
+#         'django.request': {
+#             'handlers': ['file'],
+#             'level': 'ERROR',  # Only log errors for django.request
+#             'propagate': False,
+#         },
+#     },
+# }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'errors.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
